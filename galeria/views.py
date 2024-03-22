@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from galeria.models import Fotografia
 
 def index(request):
@@ -14,7 +14,7 @@ def index(request):
     fotografias = Fotografia.objects.all()
     return render(request, '../templates/galeria/index.html', {"cards": fotografias})
 
-def imagem(request):
+def imagem(request, foto_id):
     """
     Renderiza o modelo 'imagem.html' e retorna o HTML renderizado como resposta.
 
@@ -24,4 +24,5 @@ def imagem(request):
     Retorna:
         HttpResponse: A resposta HTML renderizada.
     """
-    return render(request, '../templates/galeria/imagem.html')
+    fotografia = get_object_or_404(Fotografia, pk=foto_id)
+    return render(request, '../templates/galeria/imagem.html', {"fotografia": fotografia})
