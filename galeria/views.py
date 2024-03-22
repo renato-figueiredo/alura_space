@@ -10,7 +10,19 @@ def index(request):
     Retorna:
         HttpResponse: O HTML renderizado como resposta.
     """
-    return render(request, '../templates/galeria/index.html')
+
+    dados = {
+        1: {
+            "nome": "Nebula de Carina",
+            "legenda": "webbtelescope.org / NASA / James Webb",
+        },
+        2: {
+            "nome": "Galáxia NGC 3324",
+            "legenda": "nasa.org / NASA / Hubble",
+        }
+    }
+
+    return render(request, '../templates/galeria/index.html', {"cards": dados})
 
 def imagem(request):
     """
