@@ -11,7 +11,7 @@ def index(request):
     Retorna:
         HttpResponse: O HTML renderizado como resposta.
     """
-    fotografias = Fotografia.objects.filter(publicada=True)
+    fotografias = Fotografia.objects.order_by('data_fotografia').filter(publicada=True)
     return render(request, '../templates/galeria/index.html', {"cards": fotografias})
 
 def imagem(request, foto_id):
