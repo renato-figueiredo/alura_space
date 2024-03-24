@@ -22,4 +22,4 @@ class Fotografia(models.Model):
         """
         Retorna uma representação de string do objeto com o formato "Fotografia [nome={self.nome}]"
         """
-        return f"Fotografia [nome={self.nome}]"
+        return self.nome
