@@ -28,6 +28,15 @@ def imagem(request, foto_id):
     return render(request, '../templates/galeria/imagem.html', {"fotografia": fotografia})
 
 def buscar(request):
+    """
+    Função para buscar fotografias com base em um parâmetro de consulta fornecido.
+    
+    Parâmetros:
+    - request: objeto HttpRequest contendo os parâmetros de consulta
+    
+    Retorna:
+    - Modelo renderizado com uma lista de fotografias com base na consulta de busca
+    """
     fotografias = Fotografia.objects.order_by('data_fotografia').filter(publicada=True)
 
     if 'buscar' in request.GET:
