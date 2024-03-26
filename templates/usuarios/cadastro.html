@@ -18,29 +18,9 @@
 
 <body>
     <div class="pagina-inicial">
-        <header class="cabecalho">
-            <img src="{% static '/assets/logo/Logo(2).png' %}" alt="Logo da Alura Space" />
-            {% include 'partials/_alertas.html' %}
-            <div class="cabecalho__busca">
-                <div class="busca__fundo">
-                    <form action="{% url 'buscar' %}">
-                        <input  class="busca__input" type="text" name="buscar" placeholder="O que você procura?">
-                        <button type="submit">
-                            <img class="busca__icone" src="{% static '/assets/ícones/1x/search.png' %}" alt="ícone de search">
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </header>
+        {% include 'partials/_header.html' %}
         <main class="principal">
-            <section class="menu-lateral">
-                <nav class="menu-lateral__navegacao">
-                    <a href="{% url 'index' %}"><img src="{% static '/assets/ícones/1x/Home - ativo.png' %}"> Home</a>
-                    <a href="{% url 'login' %}"><img src="{% static '/assets/ícones/1x/Mais vistas - inativo.png' %}"> Login</a>
-                    <a href="{% url 'cadastro' %}"><img src="{% static '/assets/ícones/1x/Novas - inativo.png' %}"> Cadastrar</a>
-                    <a href="{% url 'logout' %}"><img src="{% static '/assets/ícones/1x/Surpreenda-me - inativo.png' %}"> Logout</a>
-                </nav>
-            </section>
+            {% include 'partials/_menu_lateral.html' %}
             <section class="galeria" style="margin-left: 5em">
                 <form action="{% url 'cadastro' %}" method="POST">
                     {% csrf_token %}
@@ -51,10 +31,10 @@
                             {{ field }}
                         </div>
                         {% for error in field.errors %}
-                        <!-- Corrigir a mensagem de erro (bootstrap não está puxando a class) -->
-                        <div class="alert alert-danger">
-                            {{ error }}
-                        </div>
+                            <!-- Corrigir a mensagem de erro (bootstrap não está puxando a class) -->
+                            <div class="alert alert-danger">
+                                {{ error }}
+                            </div>
                         {% endfor %}
                         {% endfor %}
                     </div>
@@ -67,4 +47,4 @@
     </div>
 </body>
 
-{% include 'galeria/partials/_footer.html' %}
+{% include 'partials/_footer.html' %}
