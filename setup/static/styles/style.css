@@ -384,7 +384,7 @@ table {
 }
 
 .alert {
-    --bs-alert-bg: transparent;
+    --bs-alert-bg: transparent; 
     --bs-alert-padding-x: 1rem;
     --bs-alert-padding-y: 1rem;
     --bs-alert-margin-bottom: 1rem;
