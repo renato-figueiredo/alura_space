@@ -1,4 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
+
 from galeria.models import Fotografia
 
 def index(request):
@@ -11,6 +13,10 @@ def index(request):
     Retorna:
         HttpResponse: O HTML renderizado como resposta.
     """
+    if not request.user.is_authenticated:
+        messages.error(request, 'Usuario não logado!')
+        return redirect('login')
+    
     fotografias = Fotografia.objects.order_by('data_fotografia').filter(publicada=True)
     return render(request, '../templates/galeria/index.html', {"cards": fotografias})
 
@@ -37,6 +43,10 @@ def buscar(request):
     Retorna:
     - Modelo renderizado com uma lista de fotografias com base na consulta de busca
     """
+    if not request.user.is_authenticated:
+        messages.error(request, 'Usuario não logado!')
+        return redirect('login')
+    
     fotografias = Fotografia.objects.order_by('data_fotografia').filter(publicada=True)
 
     if 'buscar' in request.GET:
